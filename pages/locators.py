@@ -18,6 +18,10 @@ class LoginPageLocators():
     REGISTRATION_PASSWORD_REPEAT = (By.CSS_SELECTOR, "input[name='registration-password2'].form-control")
 
     REGISTRATION_BUTTON = (By.CSS_SELECTOR, "button[name='registration_submit']")
+
+#локаторы для страницы товара
+class ProductPageLocators():
+    ADD_TO_CART_BUTTON = ((By.CSS_SELECTOR, "#add_to_basket_form"))
     
     
     
