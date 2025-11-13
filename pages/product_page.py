@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
+import time
 
 #2строки ниже нужны для добавления ожидания (кнопка корзины похоже не сразу появляется)
 
@@ -19,5 +20,9 @@ class ProductPage(BasePage):
 
         # Проверяем, что кнопка действительно есть
         assert self.is_element_present(*ProductPageLocators.ADD_TO_CART_BUTTON), "Basket button is not presented"
+        add_to_cart_button.click()
+
+        #ожидание нужно для появляющегося окна
+        time.sleep(5) 
 
 # 4. дописать методы проерки - пока не понимаю о чем речь
