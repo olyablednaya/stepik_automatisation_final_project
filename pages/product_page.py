@@ -23,6 +23,6 @@ class ProductPage(BasePage):
         add_to_cart_button.click()
 
         #ожидание нужно для появляющегося окна
-        time.sleep(5) 
+        # time.sleep(5) 
 
 # 4. дописать методы проерки - пока не понимаю о чем речь

@@ -1,12 +1,14 @@
 #base page
+
+import math
+import time
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException # в начале файла
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-import math
-
+from selenium.common.exceptions import TimeoutException
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
@@ -26,29 +28,40 @@ class BasePage():
     
     #код для получения проверочного кода к заданию 4.3 урок 2
     def solve_quiz_and_get_code(self):
+        WebDriverWait(self.browser, 5).until(EC.alert_is_present())
+        alert = self.browser.switch_to.alert
+        x = alert.text.split(" ")[2]
+        answer = str(math.log(abs(12 * math.sin(float(x)))))
+        print("Answer:", answer)
+
+        time.sleep(1)
+        alert.send_keys(answer)
+        alert.accept()
+
         try:
-            # Ожидаем появления alert
-            alert = WebDriverWait(self.browser, 10).until(EC.alert_is_present())
-        
-            # Получаем текст alert
-            x = alert.text.split(" ")[2]
-        
-            # Вычисляем ответ
-            answer = str(math.log(abs((12 * math.sin(float(x))))))
-
-            # Отправляем ответ в alert и принимаем его
-            alert.send_keys(answer)
-            alert.accept()
-
-        # Ожидаем появления второго alert (если он существует)
-            try:
-                alert = WebDriverWait(self.browser, 10).until(EC.alert_is_present())
-                alert_text = alert.text
-                print(f"Your code: {alert_text}")
-                alert.accept()
-
-            except NoAlertPresentException:
-                print("No second alert presented")
-
+            WebDriverWait(self.browser, 5).until(EC.alert_is_present())
+            second_alert = self.browser.switch_to.alert
+            print(f"Your code: {second_alert.text}")
+            second_alert.accept()
         except NoAlertPresentException:
-            print("No alert presented to solve the quiz")
+            print("No second alert presented")
+            return False
+
+        return True
+    
+    def solve_quiz_and_get_code_orig(self):
+        print("called")
+        alert = self.browser.switch_to.alert
+        x = alert.text.split(" ")[2]
+        print(f"solve for {x}")
+        answer = str(math.log(abs((12 * math.sin(float(x))))))
+        alert.send_keys(answer)
+        alert.accept()
+
+        try:
+            alert = self.browser.switch_to.alert
+            alert_text = alert.text
+            print(f"Your code: {alert_text}")
+            alert.accept()
+        except NoAlertPresentException:
+            print("No second alert presented")
