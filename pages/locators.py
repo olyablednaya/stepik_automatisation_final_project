@@ -22,8 +22,14 @@ class LoginPageLocators():
 #локаторы для страницы товара
 class ProductPageLocators():
     ADD_TO_CART_BUTTON = ((By.CSS_SELECTOR, "#add_to_basket_form"))
-    
-    
+
+    #цена и имя на карточке товара
+    PRODUCT_NAME = (By.CSS_SELECTOR, '.col-sm-6.product_main h1')
+    PRODUCT_PRICE = (By.CSS_SELECTOR, '.col-sm-6.product_main .price_color')
+
+    #цена и имя в уведомлении после добавления в корзину
+    NAME_IN_ALERT = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
+    PRICE_IN_ALERT = (By.CSS_SELECTOR, ".alert-info .alertinner strong")
     
 
 
