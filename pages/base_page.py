@@ -26,28 +26,6 @@ class BasePage():
             return False
         return True
     
-    #код для получения проверочного кода к заданию 4.3 урок 2
-    def solve_quiz_and_get_code(self):
-        WebDriverWait(self.browser, 5).until(EC.alert_is_present())
-        alert = self.browser.switch_to.alert
-        x = alert.text.split(" ")[2]
-        answer = str(math.log(abs(12 * math.sin(float(x)))))
-        print("Answer:", answer)
-
-        time.sleep(1)
-        alert.send_keys(answer)
-        alert.accept()
-
-        try:
-            WebDriverWait(self.browser, 5).until(EC.alert_is_present())
-            second_alert = self.browser.switch_to.alert
-            print(f"Your code: {second_alert.text}")
-            second_alert.accept()
-        except NoAlertPresentException:
-            print("No second alert presented")
-            return False
-
-        return True
     
     def solve_quiz_and_get_code_orig(self):
         print("called")
