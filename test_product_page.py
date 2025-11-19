@@ -4,13 +4,26 @@ from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 import time
 from .pages.base_page import BasePage
+import pytest
+
+@pytest.mark.parametrize('link', [
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=pytest.mark.xfail(reason="Ссылка 7 не проходит по условию задания")),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8"),
+    pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9")
+])
 
 
-
-def test_guest_can_add_product_to_basket(browser):
+def test_guest_can_add_product_to_basket(browser, link):
     
     #link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    #link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     
     page = ProductPage(browser, link)
     page.open()
@@ -26,7 +39,7 @@ def test_guest_can_add_product_to_basket(browser):
     
 
     # debug sleep to see what's happening on the page after adding to cart
-    time.sleep(15)
+    #time.sleep(10)
 
     
     #цена товара на карточке и в алерте одинаковые 
@@ -36,5 +49,5 @@ def test_guest_can_add_product_to_basket(browser):
     page.product_name_in_alert_same_as_on_product_card()
 
     
-    time.sleep(15)
+    #time.sleep(10)
     
