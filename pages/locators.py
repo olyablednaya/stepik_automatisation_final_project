@@ -30,6 +30,7 @@ class ProductPageLocators():
     #цена и имя в уведомлении после добавления в корзину
     NAME_IN_ALERT = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     PRICE_IN_ALERT = (By.CSS_SELECTOR, ".alert-info .alertinner strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR,"#messages > div:nth-child(1)")
     
 
 
