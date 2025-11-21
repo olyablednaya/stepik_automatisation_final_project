@@ -17,19 +17,6 @@ def test_guest_should_see_login_link(browser):
     page.open()
     page.should_be_login_link()
 
-"""def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/"
-    page = MainPage(browser, link)
-    page.open()
-
-    #находим линк на корзину и тыкаем его (метод в бейс пейдж пай)
-    page.goes_to_сart_by_header_on_page()
-
-    #ОР что в корзине нет товаров
-    page.check_message_about_empty_string_in_page()
-
-    #ОР есть строка о пустой корзине
-    page.check_message_about_empty_string_in_page()"""
 
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
@@ -40,6 +27,11 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page.goes_to_сart_by_header_on_page()
 
     # ТЕПЕРЬ создаём объект BasketPage
+    #зачем нужно:
+    #1.В Page Object Model один класс на каждую страницу
+    #гарантированно передается правильный URL
+    #экземпляр страницы дает доступ к методам храктерным для страницы
+    #гарантирует чистоту и структуру тестов
     basket_page = BasketPage(browser, browser.current_url)
 
     # Проверяем отсутствие товаров

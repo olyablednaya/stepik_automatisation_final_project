@@ -5,6 +5,8 @@ from .pages.product_page import ProductPage
 import time
 from .pages.base_page import BasePage
 from .pages.login_page import LoginPage
+
+from .pages.basket_page import BasketPage
 import pytest
 
 #тесты с параметризацией отключены так как отнимают много времени, можно снова их запускать закоментив строку ниже
@@ -85,12 +87,15 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 
     #переходим в корзину по по кнопке в шапке
     page.goes_to_сart_by_header_on_page()
-    
-    #проверяем, что в корзине нет товаров
-    page.check_there_no_products_in_cart()
 
-    #провверяем текст, что страница пуста
-    page.check_message_about_empty_string_in_page()
+     # ТЕПЕРЬ создаём объект BasketPage
+    basket_page = BasketPage(browser, browser.current_url)
+
+    # Проверяем отсутствие товаров
+    basket_page.check_there_no_products_in_cart()
+
+    # Проверяем сообщение о пустой корзине
+    basket_page.check_message_about_empty_string_in_page()
 
 
 
