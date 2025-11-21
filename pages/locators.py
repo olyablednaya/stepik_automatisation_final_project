@@ -35,6 +35,18 @@ class ProductPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+    CART_LINK = (By.CSS_SELECTOR, "a[href='/en-gb/basket/']")
+
+class CartPageLocators():
+    #локатор который ищет сообщение о пустой корзине
+    BASKET_EMPTY = (By.ID, "content_inner")
+    #сообщение которое выводится в анг версии сайта
+    MESSAGE_EMPTY_CART_EN = "Your basket is empty"
+
+    #локатор для корзины когда там есть товары
+    BASKET_NOT_EMPTY = (By.CSS_SELECTOR, ".basket-title")
+    
     
 
 

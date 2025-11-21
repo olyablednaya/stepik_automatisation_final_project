@@ -7,6 +7,7 @@ from .pages.base_page import BasePage
 from .pages.login_page import LoginPage
 import pytest
 
+#тесты с параметризацией отключены так как отнимают много времени, можно снова их запускать закоментив строку ниже
 @pytest.mark.skip(reason="Временно отключено")
 @pytest.mark.parametrize('link', [
     pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"),
@@ -72,9 +73,31 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     #как бы говорим что это - страница логина
     login_page = LoginPage(browser, browser.current_url)
 
-
     #сверям с проверками страница логина из login_page.py
     login_page.should_be_login_page()
+
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+
+    #переходим в корзину по по кнопке в шапке
+    page.goes_to_сart_by_header_on_page()
+    
+    #проверяем, что в корзине нет товаров
+    page.check_there_no_products_in_cart()
+
+    #провверяем текст, что страница пуста
+    page.check_message_about_empty_string_in_page()
+
+
+
+
+    
+
+
     
     
 

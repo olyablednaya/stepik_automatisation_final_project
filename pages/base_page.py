@@ -11,11 +11,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
-class BasePage():
+class BasePage:
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
+
+    
 
     def open(self): 
         self.browser.get(self.url)
@@ -71,3 +73,9 @@ class BasePage():
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    #метод перехода в корзину с любой страницы
+    def goes_to_сart_by_header_on_page(self):
+        cart_link = self.browser.find_element(*BasePageLocators.CART_LINK)
+        cart_link.click()
+        
