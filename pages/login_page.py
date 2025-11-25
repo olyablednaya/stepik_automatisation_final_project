@@ -27,3 +27,28 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD), "Registration password field is not presented"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD_REPEAT), "Registration password repeat field is not presented"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_BUTTON), "Registration button is not presented"
+        
+    #метод регистрации нового пользователя в задании просят добавить именно в login_page.py,
+    #но мне каежтся место для него странное
+    def register_new_user(self, email, password):
+        
+        user_email = self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL)
+        user_email.send_keys(email)
+
+        user_password = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD)
+        user_password.send_keys(password)
+
+        user_password_repeat = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD_REPEAT)
+        user_password_repeat.send_keys(password)
+
+        
+
+        registration_button = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON)
+        registration_button.click()
+    
+    #проверяем что регистрация проходит успешно
+    def check_that_user_logged_in_user_icon(self):
+        assert self.is_element_present(*LoginPageLocators.USER_ICON), "There no user icon on page after registration new user"
+
+
+        

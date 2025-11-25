@@ -18,6 +18,8 @@ class LoginPageLocators():
     REGISTRATION_PASSWORD_REPEAT = (By.CSS_SELECTOR, "input[name='registration-password2'].form-control")
 
     REGISTRATION_BUTTON = (By.CSS_SELECTOR, "button[name='registration_submit']")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    
 
 #локаторы для страницы товара
 class ProductPageLocators():
@@ -46,6 +48,9 @@ class CartPageLocators():
 
     #локатор для корзины когда там есть товары
     BASKET_NOT_EMPTY = (By.CSS_SELECTOR, ".basket-title")
+    
+    #локатор иконки пользователя, который появляется только после регистрации
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
     
     
 
