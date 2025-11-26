@@ -19,4 +19,3 @@ def browser(language):
 #Добавляет новую опцию командной строки (например, --language)
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en', help="Choose language")
-

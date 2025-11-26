@@ -1,12 +1,8 @@
-#base page
 from .locators import BasePageLocators
-
 import math
 import time
-
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException # в начале файла
-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -17,8 +13,6 @@ class BasePage:
         self.url = url
         self.browser.implicitly_wait(timeout)
 
-    
-
     def open(self): 
         self.browser.get(self.url)
 
@@ -28,7 +22,6 @@ class BasePage:
         except (NoSuchElementException):
             return False
         return True
-    
     
     def solve_quiz_and_get_code_orig(self):
         print("called")
@@ -82,6 +75,3 @@ class BasePage:
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"
-
-    
-        

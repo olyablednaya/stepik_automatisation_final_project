@@ -3,12 +3,10 @@ from .locators import ProductPageLocators
 import time
 
 #2строки ниже нужны для добавления ожидания (кнопка корзины похоже не сразу появляется)
-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-#не совсем понимаю что должно передоваться как аргумент в этом классе
-#метод для добавления в корзину
+
 class ProductPage(BasePage):
 
     def adding_product_to_the_cart(self):
@@ -46,8 +44,8 @@ class ProductPage(BasePage):
             product_name == product_name_in_alert
         ), 'The name of the product in the alert does not match the name on the product card'
 
-    # использование метода который проверяет, что элемент не появляется на странице в течение заданного времени
-    # мы ожидаем, что элемент вообще НЕ появится → ни в начале, ни в процессе ожидания.
+    #метод который проверяет, что элемент не появляется на странице в течение заданного времени
+    #ожидаем, что элемент вообще НЕ появится, ни в начале, ни в процессе ожидания
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
@@ -57,7 +55,3 @@ class ProductPage(BasePage):
     def should_disappear(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Element '*book name* был добавлен в вашу корзину' did not disappear after timeout 4"
-
-
-
-        

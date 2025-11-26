@@ -10,12 +10,10 @@ class LoginPage(BasePage):
 
     #В методе should_be_login_url реализуйте проверку, что подстрока "login" есть в текущем url браузера.
     #Для этого используйте соответствующее свойство Webdriver (driver.current_url)  
-
     def should_be_login_url(self):
         assert "login" in self.browser.current_url, "Login substring is not present in the current URL"
 
     def should_be_login_form(self):
-        #пример синтаксиса assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "Login form is not presented"
         #реализуйте проверку, что есть форма логина
         assert self.is_element_present(*LoginPageLocators.LOGIN_EMAIL), "Login email field is not presented"
         assert self.is_element_present(*LoginPageLocators.LOGIN_PASSWORD), "Login password field is not presented"
@@ -41,14 +39,9 @@ class LoginPage(BasePage):
         user_password_repeat = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD_REPEAT)
         user_password_repeat.send_keys(password)
 
-        
-
         registration_button = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON)
         registration_button.click()
     
     #проверяем что регистрация проходит успешно
     def check_that_user_logged_in_user_icon(self):
         assert self.is_element_present(*LoginPageLocators.USER_ICON), "There no user icon on page after registration new user"
-
-
-        

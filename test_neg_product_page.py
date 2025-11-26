@@ -34,6 +34,3 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
 
     page.adding_product_to_the_cart()
     page.should_disappear()
-    
-    
-

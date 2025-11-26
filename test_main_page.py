@@ -3,7 +3,6 @@ import time
 from .pages.main_page import MainPage
 from .pages.base_page import BasePage
 from .pages.basket_page import BasketPage
-
 import pytest 
 
 #пример использования маркировки для объединения тестов в один класс
@@ -44,8 +43,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
 
     # Проверяем сообщение о пустой корзине
     basket_page.check_message_about_empty_string_in_page()
-
-    
-    
-
-    

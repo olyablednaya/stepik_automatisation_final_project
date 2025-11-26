@@ -1,4 +1,3 @@
-
 from .base_page import BasePage
 from .locators import LoginPageLocators
 from .locators import CartPageLocators
@@ -10,9 +9,8 @@ class BasketPage(BasePage):
         self.url = url
         self.browser.implicitly_wait(timeout)
         
-    #должно быть 2 метода-проверки
         
-    # метод 1 проверяет текст, что корзина пуста
+    # метод 1 проверяет ТЕКСТ, что корзина пуста
     def check_message_about_empty_string_in_page(self):
         empty_basket_message = CartPageLocators.MESSAGE_EMPTY_CART_EN
         assert empty_basket_message in self.browser.find_element(*CartPageLocators.BASKET_EMPTY).text, "There is no message 'Your basket is empty' on page"
@@ -20,16 +18,3 @@ class BasketPage(BasePage):
     #метод 2 проверяет, что корзина пуста
     def check_there_no_products_in_cart(self):
         assert self.is_not_element_present(*CartPageLocators.BASKET_NOT_EMPTY), "There are items in the cart that shouldn't be there"
-        
-    #так и не стало понятнее нужны ли еще проверки?
-    
-
-
-    
-
-    
-    
-    
-
-    
-    
